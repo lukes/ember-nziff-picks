@@ -3,7 +3,7 @@
 
 require 'open-uri'
 require 'slop'
-# require 'json'
+require 'yaml'
 require 'active_support/json'
 require 'active_support/core_ext/hash'
 
@@ -13,15 +13,15 @@ opts = Slop.parse do
   banner 'Usage: scrips.rb [options]'
 
   on 'q=', 'Film name'
-  on 'k=', 'API key'
 end
 
-unless opts[:q] && opts[:k]
-  puts opts
-  exit
+unless opts[:q]
+  puts opts and exit
 end
 
-uri = URI::encode("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=#{opts[:q]}&page_limit=10&page=1&apikey=#{opts[:k]}")
+apikey = YAML.load(File.read("secrets.yml"))["apikey"]
+uri = URI::encode("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=#{opts[:q]}&page_limit=10&page=1&apikey=#{apikey}")
+
 content = ActiveSupport::JSON.decode(open(uri).read).with_indifferent_access
 
 puts "#{content[:total]} found"
@@ -32,6 +32,7 @@ content[:movies].each do |film|
   prompt = STDIN.gets.chomp.downcase
   if ["y", ""].include?(prompt)
     Film.new(film).save
+    break
   else
     puts "Skipping"
   end
