@@ -28,6 +28,6 @@ class Film
   end
   def save
     puts "Saving"
-    File.open("#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
+    File.open("imported/#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
   end
 end
