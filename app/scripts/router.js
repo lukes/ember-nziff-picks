@@ -1,3 +1,3 @@
-Nziffpicks.Router.map(function () {
+NziffPicks.Router.map(function () {
   // Add your routes here
 });

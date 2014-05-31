@@ -1,4 +1,4 @@
-var Nziffpicks = window.Nziffpicks = Ember.Application.create();
+var NziffPicks = window.NziffPicks = Ember.Application.create();
 
 /* Order and include as you please. */
 require('scripts/controllers/*');

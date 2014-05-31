@@ -1,1 +1,1 @@
-Nziffpicks.ApplicationAdapter = DS.FixtureAdapter;
+NziffPicks.ApplicationAdapter = DS.FixtureAdapter;
