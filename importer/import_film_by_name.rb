@@ -24,7 +24,7 @@ payload = RottenTomatoes.instance.search(opts.to_hash)
 puts "#{payload[:total]} found"
 
 payload[:movies].each do |film|
-  puts "#{film[:id]}\t#{film[:year]}\t#{film[:title]}"
+  puts "#{film[:id]}\t#{film[:year]}\t#{film[:title]}\t#{film[:synopsis]}"
   puts "Save this film? [Y,n]"
   prompt = STDIN.gets.chomp.downcase
   if ["y", ""].include?(prompt)
