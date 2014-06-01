@@ -5,11 +5,11 @@ NziffPicks.Region = DS.Model.extend({
 
 NziffPicks.Region.FIXTURES = [
   {
-    id: 1,
+    id: "auckland",
     name: 'Auckland'
   },
   {
-    id: 2,
+    id: "wellington",
     name: 'Wellington'
   }
 ]

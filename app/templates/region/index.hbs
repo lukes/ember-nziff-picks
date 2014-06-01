@@ -1,0 +1,7 @@
+<h2>The films in {{name}} are:</h2>
+
+{{#each film in controller}}
+    <li class="list-group-item">{{#link-to 'region.film' 'auckland' film}}{{film.title}}{{/link-to}}</li>
+{{else}}
+  None!
+{{/each}}

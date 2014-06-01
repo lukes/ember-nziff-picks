@@ -1,8 +1,8 @@
 
 <strong>Regions</strong>
 <ul class="list-group">
-{{#each item in controller}}
-    <li class="list-group-item">{{item.name}}</li>
+{{#each region in controller}}
+    <li class="list-group-item">{{#link-to 'region.index' region.id}}{{region.name}}{{/link-to}}</li>
 {{/each}}
 </ul>
 
