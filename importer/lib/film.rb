@@ -1,3 +1,5 @@
+require 'active_support/json'
+
 class Film
   def initialize(params)
 

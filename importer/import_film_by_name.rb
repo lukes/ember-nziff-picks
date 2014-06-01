@@ -1,11 +1,7 @@
 # given a name String, find matching films from RT
 # and prompt whether to import it or not.
 
-require 'open-uri'
 require 'slop'
-require 'yaml'
-require 'active_support/json'
-require 'active_support/core_ext/hash'
 
 require_relative 'lib/film'
 require_relative 'lib/rottentomatoes'
