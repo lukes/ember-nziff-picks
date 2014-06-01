@@ -7,7 +7,8 @@ require 'yaml'
 require 'active_support/json'
 require 'active_support/core_ext/hash'
 
-require_relative 'film'
+require_relative 'lib/film'
+require_relative 'lib/rottentomatoes'
 
 opts = Slop.parse do
   banner 'Usage: scrips.rb [options]'
@@ -16,17 +17,15 @@ opts = Slop.parse do
 end
 
 unless opts[:q]
-  puts opts and exit
+  puts opts
+  exit
 end
 
-apikey = YAML.load(File.read("secrets.yml"))["apikey"]
-uri = URI::encode("http://api.rottentomatoes.com/api/public/v1.0/movies.json?q=#{opts[:q]}&page_limit=10&page=1&apikey=#{apikey}")
+payload = RottenTomatoes.instance.search(opts[:q])
 
-content = ActiveSupport::JSON.decode(open(uri).read).with_indifferent_access
+puts "#{payload[:total]} found"
 
-puts "#{content[:total]} found"
-
-content[:movies].each do |film|
+payload[:movies].each do |film|
   puts "#{film[:id]}\t#{film[:year]}\t#{film[:title]}"
   puts "Save this film? [Y,n]"
   prompt = STDIN.gets.chomp.downcase
