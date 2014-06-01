@@ -11,8 +11,10 @@ class RottenTomatoes
     request("movies/#{id}.json?apikey=#{api_key}")
   end
 
-  def search(q)
-    request("movies.json?q=#{q}&page_limit=10&page=1&apikey=#{api_key}")
+  def search(opts)
+    opts[:r] ||= 10
+    opts[:p] ||= 1
+    request("movies.json?q=#{opts[:q]}&page_limit=#{opts[:r]}&page=#{opts[:p]}&apikey=#{api_key}")
   end
 
 private

@@ -10,6 +10,8 @@ opts = Slop.parse do
   banner 'Usage: scrips.rb [options]'
 
   on 'q=', 'Film name'
+  on 'p=', 'Page number (default 1)'
+  on 'r=', 'Results per page (default 10)'
 end
 
 unless opts[:q]
@@ -17,7 +19,7 @@ unless opts[:q]
   exit
 end
 
-payload = RottenTomatoes.instance.search(opts[:q])
+payload = RottenTomatoes.instance.search(opts.to_hash)
 
 puts "#{payload[:total]} found"
 
