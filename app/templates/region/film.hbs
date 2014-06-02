@@ -1,7 +1,15 @@
 <h2>The film you chose is:</h2>
-<img {{ bindAttr src="image_m" }} />
+<img {{ bind-attr src="image_m" }} />
 <h3>{{title}}</h3>
 <ul>
   <li>{{runtime}} mins</li>
   <li>Rating: {{critics_score}}</li>
 <ul>
+<h4>Reviews:</h4>
+<ul>
+{{#each review in reviews}}
+  <li>{{review.positive}} {{review.quote}}</li>
+{{else}}
+  <li>None</li>
+{{/each}}
+</ul>

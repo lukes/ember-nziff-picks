@@ -16,17 +16,17 @@ class Review
       review[:freshness] != "fresh"
     end
     if good_review
-      review_ids << Review.new(good_review).save
+      review_ids << Review.new(good_review.merge(film: film_id)).save
     end
     if bad_review
-      review_ids << Review.new(bad_review).save
+      review_ids << Review.new(bad_review.merge(film: film_id)).save
     end
     review_ids
   end
 
   def initialize(params)
     # save properties of payload that are exactly how we want them
-    @review = params.slice(:critic, :publication, :quote)
+    @review = params.slice(:film, :critic, :publication, :quote)
 
     # determine other properties
     @review[:positive] = params[:freshness] == "fresh"

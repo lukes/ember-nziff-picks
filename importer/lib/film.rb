@@ -22,7 +22,7 @@ class Film
     # these are the URIs to grab next
     clips_link = params[:links][:clips]
 
-    @film[:review_ids] = Review.fetch_and_save_reviews(@film[:id])
+    @film[:reviews] = Review.fetch_and_save_reviews(@film[:id])
 
     # from links grab :alternate, :clips, :reviews (although clips isn't that great)
   end
