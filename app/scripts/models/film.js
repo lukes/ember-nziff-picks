@@ -9,5 +9,6 @@ NziffPicks.Film = DS.Model.extend({
   directors: DS.attr(''),
   image_m: DS.attr(''),
   image_l: DS.attr(''),
-  rt_link: DS.attr('')
+  rt_link: DS.attr(''),
+  reviews: DS.hasMany('review', { async: true })
 });
