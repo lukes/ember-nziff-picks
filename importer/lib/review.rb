@@ -13,7 +13,7 @@ class Review
       review[:freshness] == "fresh"
     end
     bad_review = review_payload[:reviews].detect do |review|
-      review[:freshness] == "freshs"
+      review[:freshness] != "fresh"
     end
     if good_review
       review_ids << Review.new(good_review).save
@@ -38,9 +38,13 @@ class Review
   end
 
   def save
-    puts "Saving review"
+    puts "Saving #{type} review"
     File.open("imported/reviews/#{@review[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@review)) }
     # return the id
     @review[:id]
+  end
+
+  def type
+    @review[:positive] ? 'positive' : 'negative'
   end
 end
