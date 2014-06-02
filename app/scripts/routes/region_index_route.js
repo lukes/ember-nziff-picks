@@ -1,5 +1,6 @@
 NziffPicks.RegionIndexRoute = Ember.Route.extend({
   model: function (params) {
-    return this.store.pushMany('film', NziffPicks.AucklandFilms);
+    // TODO films in this region only
+    return this.store.find('film');
   }
 });
