@@ -1,4 +1,4 @@
-require 'active_support/json'
+require_relative 'rottentomatoes'
 
 class Film
   def initialize(params)
@@ -21,15 +21,16 @@ class Film
 
     # these are the URIs to grab next
     clips_link = params[:links][:clips]
-    reviews_link = params[:links][:reviews]
 
-    # from ratings grab :critics_score and :audience_score
-    # from posters grab :detailed and :original
-    # from abridged_directors grab array of :name
+    @film[:review_ids] = Review.fetch_and_save_reviews(@film[:id])
+
     # from links grab :alternate, :clips, :reviews (although clips isn't that great)
   end
+
   def save
-    puts "Saving"
-    File.open("imported/#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
+    puts "Saving film"
+    # TODO merge
+    File.open("imported/films/#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
   end
+
 end

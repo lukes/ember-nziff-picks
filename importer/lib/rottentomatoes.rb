@@ -17,6 +17,10 @@ class RottenTomatoes
     request("movies.json?q=#{opts[:q]}&page_limit=#{opts[:r]}&page=#{opts[:p]}&apikey=#{api_key}")
   end
 
+  def reviews(id)
+    request("movies/#{id}/reviews.json?review_type=top_critic&page_limit=50&page=1&country=us&apikey=#{api_key}")
+  end
+
 private
 
   def request(path)

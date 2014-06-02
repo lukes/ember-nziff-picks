@@ -4,6 +4,7 @@
 require 'slop'
 
 require_relative 'lib/film'
+require_relative 'lib/review'
 require_relative 'lib/rottentomatoes'
 
 opts = Slop.parse do
