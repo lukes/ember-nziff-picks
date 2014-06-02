@@ -1,7 +1,31 @@
 <h2>The films in {{name}} are:</h2>
 
-{{#each film in controller}}
-    <li class="list-group-item">{{#link-to 'region.film' 'auckland' film}}{{film.title}}{{/link-to}}</li>
-{{else}}
-  None!
-{{/each}}
+<table>
+  {{#each film in controller}}
+    <tr>
+      <td>
+        {{#if film.image_m}}
+          <img {{ bind-attr src="film.image_m" }} />
+        {{else}}
+          No image
+        {{/if}}
+        </td>
+      <td>
+        <strong>{{#link-to 'region.film' 'auckland' film}}{{film.title}}{{/link-to}}</strong>
+        {{#if film.directors}}
+          <br />
+          {{#each director in film.directors}}
+            {{director}}
+          {{/each}}
+        {{/if}}
+        {{#if film.runtime}}
+          <br />
+          Runtime {{film.runtime}} mins
+        {{/if}}
+      </td>
+      <td>{{film.rank}}</td>
+    </tr>
+  {{else}}
+    <tr><td>None!</td></tr>
+  {{/each}}
+</table>

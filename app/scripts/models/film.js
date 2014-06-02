@@ -10,5 +10,13 @@ NziffPicks.Film = DS.Model.extend({
   image_m: DS.attr(''),
   image_l: DS.attr(''),
   rt_link: DS.attr(''),
-  reviews: DS.hasMany('review', { async: true })
+  reviews: DS.hasMany('review', { async: true }),
+
+  rank: Ember.computed(function() {
+    if (this.get('critics_score') === -1) {
+      return this.get('audience_score');
+    } else {
+      return this.get('critics_score');
+    }
+  })
 });
