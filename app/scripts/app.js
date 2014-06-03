@@ -3,6 +3,7 @@ var NziffPicks = window.NziffPicks = Ember.Application.create({
 });
 
 /* Order and include as you please. */
+require('scripts/initializers/*');
 require('scripts/controllers/*');
 require('scripts/store');
 require('scripts/models/*');

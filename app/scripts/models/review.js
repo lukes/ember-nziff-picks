@@ -6,9 +6,3 @@ NziffPicks.Review = DS.Model.extend({
   link: DS.attr(''),
   film: DS.belongsTo('film', { async: true })
 });
-
-
-NziffPicks.Review.FIXTURES = [
-  { id: "auckland", name: 'Auckland' },
-  { id: "wellington", name: 'Wellington' }
-]
