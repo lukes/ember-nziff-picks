@@ -4,7 +4,7 @@ class Film
   def initialize(params)
 
     # save properties of payload that are exactly how we want them
-    @film = params.slice(:id, :title, :year, :genres, :runtime, :synopsis)
+    @film = params.slice(:id, :title, :year, :genres, :runtime, :synopsis, :tag, :slug)
 
     # flatten other properties
     @film[:critics_score] = params[:ratings][:critics_score]
@@ -19,6 +19,8 @@ class Film
 
     @film[:rt_link] = params[:links][:alternate]
 
+    @film[:region] = "auckland"
+
     # these are the URIs to grab next
     clips_link = params[:links][:clips]
 
@@ -29,8 +31,8 @@ class Film
 
   def save
     puts "Saving film"
-    # TODO merge
-    File.open("imported/films/#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
+    # TODO merge with existing imported film
+    File.open("imported/films/rotten_tomatoes/#{@film[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@film)) }
   end
 
 end

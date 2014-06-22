@@ -3,11 +3,11 @@
 PATH = File.join(File.dirname(__FILE__), '../app/scripts/data')
 
 # retrieve data from files
-films = Dir.glob('imported/films/*.json').map do |f|
+films = Dir.glob('imported/films/rotten_tomatoes/*.json').map do |f|
   File.read(f)
 end
 
-reviews = Dir.glob('imported/reviews/*.json').map do |f|
+reviews = Dir.glob('imported/reviews/nziff/*.json').map do |f|
   File.read(f)
 end
 
@@ -24,7 +24,7 @@ end
 
 # temporarily make all films belong to auckland
 File.open(File.join(PATH, 'regions.js'), 'w') do |f|
-  film_ids = Dir.glob('imported/films/*.json').map do |file|
+  film_ids = Dir.glob('imported/films/rotten_tomatoes/*.json').map do |file|
     file.sub(/\D+(\d+)\D+/, '\1')
   end
   regions = ["{ id: 'auckland', name: 'Auckland', films: [#{film_ids.join(',')}] }","{ id: 'wellington', name: 'Wellington', films: [] }"]

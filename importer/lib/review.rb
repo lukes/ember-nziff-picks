@@ -39,7 +39,7 @@ class Review
 
   def save
     puts "Saving #{type} review"
-    File.open("imported/reviews/#{@review[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@review)) }
+    File.open("imported/reviews/rotten_tomatoes/#{@review[:id]}.json", 'w') {|f| f.write(ActiveSupport::JSON.encode(@review)) }
     # return the id
     @review[:id]
   end
