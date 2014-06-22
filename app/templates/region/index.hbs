@@ -1,29 +1,46 @@
 <h2>The films in {{region.name}} are:</h2>
 
-<table>
+{{!-- TODO - proper schema markup --}}
+<table id="films">
   {{#each film in controller}}
     <tr>
-      <td>
-        {{#if film.image_m}}
-          <img {{ bind-attr src="film.image_m" }} />
-        {{else}}
-          No image
-        {{/if}}
-        </td>
-      <td>
-        <strong>{{#link-to 'region.film' region.id film}}{{film.title}}{{/link-to}}</strong>
-        {{#if film.directors}}
-          <br />
-          {{#each director in film.directors}}
-            {{director}}
-          {{/each}}
-        {{/if}}
-        {{#if film.runtime}}
-          <br />
-          Runtime {{film.runtime}} mins
+      <td rowspan="2">
+        <div class="image" {{bind-attr style="backgroundImageStyle"}}>
+          <div class="rank">{{film.rank}}%</div>
+        </div>
+      </td>
+      <td colspan="5" class="title">
+        {{#link-to 'region.film' region.id film}}{{film.title}}{{/link-to}}
+      </td>
+    </tr>
+    <tr>
+      <td class="details">
+        <ul>
+          {{#if film.directors}}
+            <li>{{toSentence film.directors}}</li>
+          {{/if}}
+          {{#if film.runtime}}
+            <li>Runtime {{film.runtime}} mins</li>
+          {{/if}}
+          <li>Screening at The Civic</li>
+        </ul>
+      </td>
+      <td class="quote">
+        {{#if film.goodReview}}
+          ^
+          <br/>
+          {{film.goodReview.quote}}
+          <span class="publication">&mdash; {{film.goodReview.publication}}</span>
         {{/if}}
       </td>
-      <td>{{film.rank}}</td>
+      <td class="quote">
+        {{#if film.badReview}}
+          v
+          <br/>
+          {{film.badReview.quote}}
+          <span class="publication">&mdash; {{film.badReview.publication}}</span>
+        {{/if}}
+      </td>
     </tr>
   {{else}}
     <tr><td>None!</td></tr>

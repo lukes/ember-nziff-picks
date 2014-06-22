@@ -1,8 +1,5 @@
 NziffPicks.Region = DS.Model.extend({
-  name: DS.attr('')
+  name: DS.attr(''),
+  slug: DS.attr(''),
+  films: DS.hasMany('film', { async: true })
 });
-
-NziffPicks.Region.FIXTURES = [
-  { id: "auckland", name: 'Auckland' },
-  { id: "wellington", name: 'Wellington' }
-]

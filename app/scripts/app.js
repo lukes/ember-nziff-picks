@@ -10,4 +10,5 @@ require('scripts/models/*');
 require('scripts/data/*');
 require('scripts/routes/*');
 require('scripts/views/*');
+require('scripts/helpers/*');
 require('scripts/router');

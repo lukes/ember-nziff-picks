@@ -11,6 +11,7 @@ NziffPicks.Film = DS.Model.extend({
   image_l: DS.attr(''),
   rt_link: DS.attr(''),
   reviews: DS.hasMany('review', { async: true }),
+  region: DS.belongsTo('region', { async: true }),
 
   rank: Ember.computed(function() {
     if (this.get('critics_score') === -1) {
@@ -18,5 +19,11 @@ NziffPicks.Film = DS.Model.extend({
     } else {
       return this.get('critics_score');
     }
-  })
+  }),
+
+  // goodReview: function() {
+  //   // debugger;
+  //   return this.get('reviews.length');
+  // }.property('reviews.@each')
+
 });
