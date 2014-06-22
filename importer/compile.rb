@@ -21,3 +21,13 @@ File.open(File.join(PATH, 'reviews.js'), 'w') do |f|
   fixtures = ['NziffPicks.Review.FIXTURES = [',reviews.join(','),'];'].join
   f.write(fixtures)
 end
+
+# temporarily make all films belong to auckland
+File.open(File.join(PATH, 'regions.js'), 'w') do |f|
+  film_ids = Dir.glob('imported/films/*.json').map do |file|
+    file.sub(/\D+(\d+)\D+/, '\1')
+  end
+  regions = ["{ id: 'auckland', name: 'Auckland', films: [#{film_ids.join(',')}] }","{ id: 'wellington', name: 'Wellington', films: [] }"]
+  fixtures = ['NziffPicks.Region.FIXTURES = [',regions.join(','),'];'].join
+  f.write(fixtures)
+end
