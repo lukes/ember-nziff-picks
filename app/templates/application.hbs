@@ -1,11 +1,3 @@
+<h2 id="title">Welcome to Ember</h2>
 
-<strong>Regions</strong>
-<ul class="list-group">
-{{#each region in controller}}
-    <li class="list-group-item">{{#link-to 'region.index' region.id}}{{region.name}}{{/link-to}}</li>
-{{/each}}
-</ul>
-
-<main>
-    {{outlet}}
-</main>
+{{outlet}}
