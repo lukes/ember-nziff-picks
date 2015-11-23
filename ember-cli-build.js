@@ -20,5 +20,11 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
+
+  app.import('bower_components/pure/base.css')
+  app.import('bower_components/pure/grids-core.css')
+  app.import('bower_components/pure/grids-units.css')
+  app.import('bower_components/pure/grids-responsive.css')
+
   return app.toTree();
 };
