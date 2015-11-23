@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('styleguide');
+  this.route('film', { path: 'film/:slug' })
 });
 
 export default Router;

@@ -1,0 +1,48 @@
+.film-thumb
+  $padding = 12px
+
+  position relative
+  padding $padding
+  font-family $base-font
+  background-color white
+  margin 2px
+  // border-top 4px solid #ccc
+
+  $score-width = 50px
+  .score
+    position absolute
+    right 10px
+    background-color black
+    flexbox()
+    align-items(center)
+    justify-content(center)
+    border-radius 99px
+    width $score-width
+    height $score-width
+    color white
+    font-size 20px
+    &.high
+      background-color green
+    &.mid
+      background-color amber
+
+  h3
+    font-weight 800
+    font-size 20px
+    margin-right $score-width
+    a
+      text-decoration none
+      color black
+
+  .synopsis
+    font-size 14px
+    line-height 1.3rem
+    margin-bottom $padding
+
+  .review
+    margin 0 (- $padding)
+    padding $padding
+    &.positive
+      background-color #ccc
+    &.negative
+      background-color #999
